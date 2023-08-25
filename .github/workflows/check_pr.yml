@@ -1,6 +1,6 @@
 on:
   pull_request:
-    # types: [unlabeled]
+    types: [opened, labeled, unlabeled, synchronize]
     branches: [main]
 env:
   notMergeableLabel: do not merge
