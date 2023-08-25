@@ -1,6 +1,6 @@
 on:
   pull_request:
-    types: [unlabeled]
+    # types: [unlabeled]
     branches: [main]
 env:
   notMergeableLabel: do not merge
@@ -9,6 +9,8 @@ jobs:
     runs-on: ubuntu-latest
     name: Unlabeled PR
     steps:
-      - run: echo "A label must be included"
-      - run: exit 1
+      - run: echo github.event.label.name
+      - run:  |
+          echo "A label must be included"
+          exit 1
      
