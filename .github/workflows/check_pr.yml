@@ -1,14 +1,22 @@
 on:
   pull_request:
-    types: [unlabeled]
+    types: [opened, labeled, unlabeled, synchronize]
     branches: [main]
 env:
   notMergeableLabel: do not merge
 jobs:
   fail_unlabeled:
     runs-on: ubuntu-latest
-    name: Unlabeled PR
     steps:
-      - run: echo "A label must be included"
-      - run: exit 1
-     
+      - name: PR need at least one label
+      - uses: mheap/github-action-required-labels@v5
+        with:
+          mode: minimum
+          count: 1
+          labels: "bug"
+      - name: PR marked as do not merge
+      - uses: mheap/github-action-required-labels@v5
+        with:
+          mode: exactly
+          count: 0
+          labels: "do not merge"
