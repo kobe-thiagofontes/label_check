@@ -10,5 +10,5 @@ jobs:
     name: Unlabeled PR
     steps:
       - run: echo "A label must be included"
-      - run: return 1
+      - run: exit 1
      
