@@ -1,0 +1,14 @@
+on:
+  pull_request:
+    types: [unlabeled]
+    branches: [dev]
+env:
+  notMergeableLabel: do not merge
+jobs:
+  fail_unlabeled:
+    runs-on: ubuntu-latest
+    name: Unlabeled PR
+    steps:
+      - run: echo "A label must be included"
+      - run: return 1
+     
