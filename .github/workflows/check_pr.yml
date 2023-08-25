@@ -5,7 +5,7 @@ on:
 env:
   notMergeableLabel: do not merge
 jobs:
-  fail_unlabeled:
+  check_labels:
     runs-on: ubuntu-latest
     steps:
       - uses: mheap/github-action-required-labels@v5
