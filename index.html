@@ -1,0 +1,42 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download Central BRF</title>
+    <script>
+        function openApp() {
+            console.log("Detecting platform...");
+            var appScheme = "centralbrf://"; // Replace with your app's deep link scheme
+            var playStore = "https://play.google.com/store/apps/details?id=com.kobe.centralbrf";
+            var appStore = "https://apps.apple.com/br/app/central-brf/id6736713145";
+            
+            var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+            if (/android/i.test(userAgent)) {
+                console.log("Android detected, trying to open the app...");
+                window.location.href = appScheme;
+                setTimeout(function() { 
+                    console.log("App not found, redirecting to Google Play...");
+                    window.location.href = playStore; 
+                }, 2000);
+            } else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+                console.log("iOS detected, trying to open the app...");
+                window.location.href = appScheme;
+                setTimeout(function() { 
+                    console.log("App not found, redirecting to App Store...");
+                    window.location.href = appStore; 
+                }, 2000);
+            } else {
+                console.log("Neither Android nor iOS detected, redirecting to website...");
+                window.location.href = "https://www.centralbrf.com.br"; // Change this if needed
+            }
+        }
+    </script>
+</head>
+<body onload="openApp()">
+    <h1>Redirecting...</h1>
+    <p>If nothing happens, <a href="https://apps.apple.com/br/app/central-brf/id6736713145">click here for iOS</a> or <a href="https://play.google.com/store/apps/details?id=com.kobe.centralbrf">click here for Android</a>.</p>
+</body>
+</html>
